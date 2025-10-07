@@ -1,0 +1,20 @@
+
+
+nohup java -jar jdc-eureka.jar 1> ./log/jdc-eureka.out 2>&1 &
+nohup java -jar jdc-discovery.jar 1> ./log/discovery.out  2>&1 &
+nohup java -jar jdc-provider-uac.jar 1> ./log/provider-uac.out 2>&1 &
+nohup java -jar jdc-gateway.jar 1> ./log/gateway.out 2>&1 &
+nohup java -jar jdc-provider-mdc.jar 1> ./log/provider-mdc.out 2>&1 &
+nohup java -jar jdc-provider-omc.jar 1> ./log/provider-omc.out 2>&1 &
+nohup java -jar jdc-provider-opc.jar 1> ./log/provider-opc.out 2>&1 &
+nohup java -jar jdc-provider-tpc.jar 1> ./log/provider-tpc.out 2>&1 &
+    
+
+ps -ef  | grep  jdc-eureka.jar
+ps -ef  | grep  jdc-discovery.jar
+ps -ef  | grep  jdc-provider-uac.jar
+ps -ef  | grep  jdc-gateway.jar
+ps -ef  | grep  jdc-provider-mdc.jar 
+ps -ef  | grep jdc-provider-omc.jar
+ps -ef  | grep  jdc-provider-opc.jar
+ps -ef  | grep  jdc-provider-tpc.jar

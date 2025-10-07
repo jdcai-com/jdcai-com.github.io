@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>Redis本地安装 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -85,8 +85,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="JDC 微服务项目启动方案.html" />
+    <link rel="next" href="0003nginx.sh.html" />
     
+    
+    <link rel="prev" href="0001MySql.sh.html" />
     
 
     </head>
@@ -129,7 +131,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -286,7 +288,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="0002install_redis_local4.0.11.sh.html">
+        <li class="chapter active" data-level="3.2" data-path="0002install_redis_local4.0.11.sh.html">
             
                 <a href="0002install_redis_local4.0.11.sh.html">
             
@@ -481,7 +483,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Redis本地安装</a>
     </h1>
 </div>
 
@@ -496,10 +498,115 @@
     
 					<section class="normal markdown-section">
 						
-						<p>git add .  &amp;&amp; git commit -m &quot;update file&quot;  &amp;&amp; git push </p>
-<p>gitbook serve  </p>
+						<h1 id="binbash">!/bin/bash</h1>
+<h1 id="&#x529F;&#x80FD;&#xFF1A;&#x4F7F;&#x7528;&#x672C;&#x5730;&#x5DF2;&#x4E0A;&#x4F20;&#x7684;redis&#x5B89;&#x88C5;&#x5305;&#x8FDB;&#x884C;&#x5B89;&#x88C5;&#xFF08;&#x9002;&#x914D;&#x6307;&#x5B9A;&#x914D;&#x7F6E;&#xFF09;">&#x529F;&#x80FD;&#xFF1A;&#x4F7F;&#x7528;&#x672C;&#x5730;&#x5DF2;&#x4E0A;&#x4F20;&#x7684;Redis&#x5B89;&#x88C5;&#x5305;&#x8FDB;&#x884C;&#x5B89;&#x88C5;&#xFF08;&#x9002;&#x914D;&#x6307;&#x5B9A;&#x914D;&#x7F6E;&#xFF09;</h1>
+<h1 id="&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#xFF1A;hostpaascloud-db-redis-port6379-passwordpaascloudredis">&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#xFF1A;host=paascloud-db-redis, port=6379, password=paascloud@redis</h1>
+<h1 id="&#x5B89;&#x88C5;&#x8DEF;&#x5F84;&#xFF1A;homeadmintaluu01toolredis-4011">&#x5B89;&#x88C5;&#x8DEF;&#x5F84;&#xFF1A;/home/admintalu/u01/tool/redis-4.0.11</h1>
+<h1 id="&#x6CE8;&#x610F;&#xFF1A;&#x8BF7;&#x5148;&#x624B;&#x52A8;&#x4E0B;&#x8F7D;redis-4011targz&#x5E76;&#x4E0A;&#x4F20;&#x5230;tmp&#x76EE;&#x5F55;">&#x6CE8;&#x610F;&#xFF1A;&#x8BF7;&#x5148;&#x624B;&#x52A8;&#x4E0B;&#x8F7D;redis-4.0.11.tar.gz&#x5E76;&#x4E0A;&#x4F20;&#x5230;/tmp&#x76EE;&#x5F55;</h1>
+<h1 id="&#x8BF7;&#x4F7F;&#x7528;root&#x7528;&#x6237;&#x6267;&#x884C;&#x6B64;&#x811A;&#x672C;">&#x8BF7;&#x4F7F;&#x7528;root&#x7528;&#x6237;&#x6267;&#x884C;&#x6B64;&#x811A;&#x672C;</h1>
+<h1 id="&#x68C0;&#x67E5;root&#x6743;&#x9650;">&#x68C0;&#x67E5;root&#x6743;&#x9650;</h1>
+<p>if [ &quot;$(id -u)&quot; -ne 0 ]; then
+    echo &quot;&#x9519;&#x8BEF;&#xFF1A;&#x8BF7;&#x4F7F;&#x7528;root&#x7528;&#x6237;&#x6267;&#x884C;&#x6B64;&#x811A;&#x672C;&quot; &gt;&amp;2
+    exit 1
+fi</p>
+<h1 id="&#x5B9A;&#x4E49;&#x53D8;&#x91CF;">&#x5B9A;&#x4E49;&#x53D8;&#x91CF;</h1>
+<p>LOCAL_PACKAGE=&quot;/home/admintalu/u01/tool/redis-4.0.11.tar.gz&quot;  # &#x672C;&#x5730;&#x5B89;&#x88C5;&#x5305;&#x8DEF;&#x5F84;
+INSTALL_PATH=&quot;/home/admintalu/u01/tool&quot;
+REDIS_VERSION=&quot;4.0.11&quot;
+REDIS_HOME=&quot;${INSTALL_PATH}/redis-${REDIS_VERSION}&quot;
+USER=&quot;admintalu&quot;
+GROUP=&quot;admintalu&quot;
+REDIS_HOST=&quot;paascloud-db-redis&quot;
+REDIS_PORT=&quot;6379&quot;
+REDIS_PASSWORD=&quot;paascloud@redis&quot;</p>
+<h1 id="1-&#x68C0;&#x67E5;&#x672C;&#x5730;&#x5B89;&#x88C5;&#x5305;&#x662F;&#x5426;&#x5B58;&#x5728;">1. &#x68C0;&#x67E5;&#x672C;&#x5730;&#x5B89;&#x88C5;&#x5305;&#x662F;&#x5426;&#x5B58;&#x5728;</h1>
+<p>echo &quot;===== &#x68C0;&#x67E5;&#x5B89;&#x88C5;&#x5305; =====&quot;
+if [ ! -f &quot;${LOCAL_PACKAGE}&quot; ]; then
+    echo &quot;&#x9519;&#x8BEF;&#xFF1A;&#x672A;&#x5728;${LOCAL_PACKAGE}&#x627E;&#x5230;&#x5B89;&#x88C5;&#x5305;&#xFF0C;&#x8BF7;&#x5148;&#x4E0A;&#x4F20;redis-4.0.11.tar.gz&#x5230;&#x8BE5;&#x8DEF;&#x5F84;&quot;
+    exit 1
+fi</p>
+<h1 id="2-&#x5B89;&#x88C5;&#x4F9D;&#x8D56;">2. &#x5B89;&#x88C5;&#x4F9D;&#x8D56;</h1>
+<p>echo &quot;===== &#x5B89;&#x88C5;&#x7F16;&#x8BD1;&#x4F9D;&#x8D56; =====&quot;
+yum install -y gcc gcc-c++ make &amp;&gt; /dev/null
+if [ $? -ne 0 ]; then
+    echo &quot;&#x9519;&#x8BEF;&#xFF1A;&#x4F9D;&#x8D56;&#x5B89;&#x88C5;&#x5931;&#x8D25;&quot;
+    exit 1
+fi</p>
+<h1 id="3-&#x51C6;&#x5907;&#x5B89;&#x88C5;&#x76EE;&#x5F55;">3. &#x51C6;&#x5907;&#x5B89;&#x88C5;&#x76EE;&#x5F55;</h1>
+<p>echo &quot;===== &#x51C6;&#x5907;&#x5B89;&#x88C5;&#x76EE;&#x5F55; =====&quot;
+mkdir -p ${INSTALL_PATH}
+chown -R ${USER}:${GROUP} ${INSTALL_PATH}</p>
+<h1 id="4-&#x590D;&#x5236;&#x5E76;&#x89E3;&#x538B;&#x672C;&#x5730;&#x5B89;&#x88C5;&#x5305;">4. &#x590D;&#x5236;&#x5E76;&#x89E3;&#x538B;&#x672C;&#x5730;&#x5B89;&#x88C5;&#x5305;</h1>
+<p>echo &quot;===== &#x89E3;&#x538B;Redis&#x5B89;&#x88C5;&#x5305; =====&quot;
+cp ${LOCAL_PACKAGE} ${INSTALL_PATH}/
+su - ${USER} -c &quot;cd ${INSTALL_PATH} &amp;&amp; tar -zxf redis-${REDIS_VERSION}.tar.gz&quot;
+rm -f ${INSTALL_PATH}/redis-${REDIS_VERSION}.tar.gz  # &#x6E05;&#x7406;&#x5B89;&#x88C5;&#x5305;</p>
+<h1 id="5-&#x7F16;&#x8BD1;redis">5. &#x7F16;&#x8BD1;Redis</h1>
+<p>echo &quot;===== &#x7F16;&#x8BD1;Redis =====&quot;
+su - ${USER} -c &quot;cd ${REDIS_HOME} &amp;&amp; make&quot;
+if [ $? -ne 0 ]; then
+    echo &quot;&#x9519;&#x8BEF;&#xFF1A;Redis&#x7F16;&#x8BD1;&#x5931;&#x8D25;&quot;
+    exit 1
+fi</p>
+<h1 id="6-&#x521B;&#x5EFA;&#x5FC5;&#x8981;&#x76EE;&#x5F55;">6. &#x521B;&#x5EFA;&#x5FC5;&#x8981;&#x76EE;&#x5F55;</h1>
+<p>su - ${USER} -c &quot;mkdir -p ${REDIS_HOME}/{data,logs,conf}&quot;
+su - ${USER} -c &quot;cp ${REDIS_HOME}/redis.conf ${REDIS_HOME}/conf/&quot;</p>
+<h1 id="7-&#x914D;&#x7F6E;redis&#xFF08;&#x5339;&#x914D;&#x6307;&#x5B9A;&#x53C2;&#x6570;&#xFF09;">7. &#x914D;&#x7F6E;Redis&#xFF08;&#x5339;&#x914D;&#x6307;&#x5B9A;&#x53C2;&#x6570;&#xFF09;</h1>
+<p>echo &quot;===== &#x914D;&#x7F6E;Redis =====&quot;
+su - ${USER} -c &quot;sed -i &apos;s|daemonize no|daemonize yes|g&apos; ${REDIS_HOME}/conf/redis.conf&quot;
+su - ${USER} -c &quot;sed -i &apos;s|pidfile /var/run/redis_6379.pid|pidfile ${REDIS_HOME}/redis.pid|g&apos; ${REDIS_HOME}/conf/redis.conf&quot;
+su - ${USER} -c &quot;sed -i &apos;s|logfile \&quot;\&quot;|logfile ${REDIS_HOME}/logs/redis.log|g&apos; ${REDIS_HOME}/conf/redis.conf&quot;
+su - ${USER} -c &quot;sed -i &apos;s|dir ./|dir ${REDIS_HOME}/data|g&apos; ${REDIS_HOME}/conf/redis.conf&quot;
+su - ${USER} -c &quot;sed -i &apos;s|port 6379|port ${REDIS_PORT}|g&apos; ${REDIS_HOME}/conf/redis.conf&quot;
+su - ${USER} -c &quot;sed -i &apos;s|bind 127.0.0.1|bind 0.0.0.0|g&apos; ${REDIS_HOME}/conf/redis.conf&quot;
+su - ${USER} -c &quot;sed -i &apos;s|# requirepass foobared|requirepass ${REDIS_PASSWORD}|g&apos; ${REDIS_HOME}/conf/redis.conf&quot;
+su - ${USER} -c &quot;echo &apos;timeout 0&apos; &gt;&gt; ${REDIS_HOME}/conf/redis.conf&quot;</p>
+<h1 id="8-&#x914D;&#x7F6E;&#x4E3B;&#x673A;&#x540D;&#x6620;&#x5C04;">8. &#x914D;&#x7F6E;&#x4E3B;&#x673A;&#x540D;&#x6620;&#x5C04;</h1>
+<p>echo &quot;===== &#x914D;&#x7F6E;&#x4E3B;&#x673A;&#x540D;&#x6620;&#x5C04; =====&quot;
+if ! grep -q &quot;${REDIS_HOST}&quot; /etc/hosts; then
+    echo &quot;$(hostname -I | awk &apos;{print $1}&apos;) ${REDIS_HOST}&quot; &gt;&gt; /etc/hosts
+fi</p>
+<h1 id="9-&#x914D;&#x7F6E;&#x7CFB;&#x7EDF;&#x670D;&#x52A1;">9. &#x914D;&#x7F6E;&#x7CFB;&#x7EDF;&#x670D;&#x52A1;</h1>
+<p>echo &quot;===== &#x914D;&#x7F6E;&#x7CFB;&#x7EDF;&#x670D;&#x52A1; =====&quot;
+cat &gt; /etc/systemd/system/redis.service &lt;&lt; EOF
+[Unit]
+Description=Redis Server (paascloud-db-redis)
+After=network.target</p>
+<p>[Service]
+Type=forking
+User=${USER}
+Group=${GROUP}
+ExecStart=${REDIS_HOME}/src/redis-server ${REDIS_HOME}/conf/redis.conf
+ExecStop=${REDIS_HOME}/src/redis-cli -h ${REDIS_HOST} -p ${REDIS_PORT} -a ${REDIS_PASSWORD} shutdown
+Restart=always</p>
+<p>[Install]
+WantedBy=multi-user.target
+EOF</p>
+<h1 id="10-&#x914D;&#x7F6E;&#x9632;&#x706B;&#x5899;">10. &#x914D;&#x7F6E;&#x9632;&#x706B;&#x5899;</h1>
+<p>echo &quot;===== &#x5F00;&#x653E;Redis&#x7AEF;&#x53E3; =====&quot;
+firewall-cmd --zone=public --add-port=${REDIS_PORT}/tcp --permanent &amp;&gt; /dev/null
+firewall-cmd --reload &amp;&gt; /dev/null</p>
+<h1 id="11-&#x542F;&#x52A8;&#x670D;&#x52A1;">11. &#x542F;&#x52A8;&#x670D;&#x52A1;</h1>
+<p>echo &quot;===== &#x542F;&#x52A8;Redis&#x670D;&#x52A1; =====&quot;
+systemctl daemon-reload
+systemctl enable redis &amp;&gt; /dev/null
+systemctl start redis</p>
+<h1 id="12-&#x9A8C;&#x8BC1;&#x5B89;&#x88C5;">12. &#x9A8C;&#x8BC1;&#x5B89;&#x88C5;</h1>
+<p>echo &quot;===== &#x9A8C;&#x8BC1;&#x5B89;&#x88C5;&#x7ED3;&#x679C; =====&quot;
+sleep 3
+if systemctl is-active --quiet redis; then
+    echo &quot;Redis&#x5B89;&#x88C5;&#x6210;&#x529F;&#xFF01;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#x5982;&#x4E0B;&#xFF1A;&quot;
+    echo &quot;&#x4E3B;&#x673A;&#x540D;&#xFF1A;${REDIS_HOST}&quot;
+    echo &quot;&#x7AEF;&#x53E3;&#xFF1A;${REDIS_PORT}&quot;
+    echo &quot;&#x5BC6;&#x7801;&#xFF1A;${REDIS_PASSWORD}&quot;
+    echo &quot;&#x5B89;&#x88C5;&#x8DEF;&#x5F84;&#xFF1A;${REDIS_HOME}&quot;
+    echo &quot;&#x6D4B;&#x8BD5;&#x8FDE;&#x63A5;&#xFF1A;su - ${USER} -c &apos;redis-cli -h ${REDIS_HOST} -p ${REDIS_PORT} -a ${REDIS_PASSWORD}&apos;&quot;
+else
+    echo &quot;Redis&#x542F;&#x52A8;&#x5931;&#x8D25;&#xFF0C;&#x8BF7;&#x67E5;&#x770B;&#x65E5;&#x5FD7;&#xFF1A;${REDIS_HOME}/logs/redis.log&quot;
+    exit 1
+fi</p>
 <footer class="page-footer"><span class="copyright">&#xA9; snowdreams1006 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2025-10-07 09:35:22
+2025-09-27 21:29:40
 </span></footer>
 <script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
 						
@@ -528,8 +635,12 @@
 
 		
 		
+		<a href="0001MySql.sh.html" class="navigation navigation-prev " aria-label="Previous page: MySQL安装">
+			<i class="fa fa-angle-left"></i>
+		</a>
 		
-		<a href="JDC 微服务项目启动方案.html" class="navigation navigation-next navigation-unique" aria-label="Next page: JDC 微服务项目启动方案">
+		
+		<a href="0003nginx.sh.html" class="navigation navigation-next " aria-label="Next page: Nginx安装">
 			<i class="fa fa-angle-right"></i>
 		</a>
 		
@@ -539,7 +650,7 @@
 	<script>
 		var gitbook = gitbook || [];
 		gitbook.push(function() {
-			gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"JDC 微服务项目启动方案","level":"2.1","depth":1,"path":"JDC 微服务项目启动方案.md","ref":"JDC 微服务项目启动方案.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"^3.2.3","theme":"default","variables":{},"plugins":["tbfed-pagefooter","lunr","search","back-to-top-button","copy-code-button","heading-anchors","highlight","theme-fexa","code","splitter","popup","page-toc-button","accordion","livereload","sharing","fontsettings"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy snowdreams1006","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"livereload":{},"splitter":{},"accordion":{},"search":{},"popup":{},"theme-fexa":{},"lunr":{"ignoreSpecialCharacters":false,"maxIndexSize":1000000},"code":{"copyButtons":true},"fontsettings":{"family":"sans","size":2,"theme":"white"},"heading-anchors":{},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.MD","mtime":"2025-10-07T01:35:22.900Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-10-07T01:52:00.845Z"},"basePath":".","book":{"language":""}});
+			gitbook.page.hasChanged({"page":{"title":"Redis本地安装","level":"3.2","depth":1,"next":{"title":"Nginx安装","level":"3.3","depth":1,"path":"0003nginx.sh.md","ref":"0003nginx.sh.md","articles":[]},"previous":{"title":"MySQL安装","level":"3.1","depth":1,"path":"0001MySql.sh.md","ref":"0001MySql.sh.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"^3.2.3","theme":"default","variables":{},"plugins":["tbfed-pagefooter","lunr","search","back-to-top-button","copy-code-button","heading-anchors","highlight","theme-fexa","code","splitter","popup","page-toc-button","accordion","livereload","sharing","fontsettings"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy snowdreams1006","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"livereload":{},"splitter":{},"accordion":{},"search":{},"popup":{},"theme-fexa":{},"lunr":{"ignoreSpecialCharacters":false,"maxIndexSize":1000000},"code":{"copyButtons":true},"fontsettings":{"family":"sans","size":2,"theme":"white"},"heading-anchors":{},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"0002install_redis_local4.0.11.sh.md","mtime":"2025-09-27T13:29:40.871Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-10-07T01:52:00.845Z"},"basePath":".","book":{"language":""}});
 		});
 	</script>
 </div>
