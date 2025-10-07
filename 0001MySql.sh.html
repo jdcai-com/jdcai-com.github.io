@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>MySQL安装 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -85,8 +85,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="JDC 微服务项目启动方案.html" />
+    <link rel="next" href="0002install_redis_local4.0.11.sh.html" />
     
+    
+    <link rel="prev" href="Untitled.html" />
     
 
     </head>
@@ -129,7 +131,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -273,7 +275,7 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="0001MySql.sh.html">
+        <li class="chapter active" data-level="3.1" data-path="0001MySql.sh.html">
             
                 <a href="0001MySql.sh.html">
             
@@ -481,7 +483,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >MySQL安装</a>
     </h1>
 </div>
 
@@ -496,10 +498,28 @@
     
 					<section class="normal markdown-section">
 						
-						<p>git add .  &amp;&amp; git commit -m &quot;update file&quot;  &amp;&amp; git push </p>
-<p>gitbook serve  </p>
+						<h1 id="binbash">!/bin/bash</h1>
+<h1 id="pull-mysql-8-image-from-docker-hub">Pull MySQL 8 image from Docker Hub</h1>
+<h1 id="mysql-&#x5B89;&#x88C5;&#x811A;&#x672C;">MySql &#x5B89;&#x88C5;&#x811A;&#x672C;</h1>
+<p>docker pull mysql:8</p>
+<h1 id="run-mysql-8-container">Run MySQL 8 container</h1>
+<p>docker run -d \
+  --name mysql-container \
+  -e MYSQL_ROOT_PASSWORD=rootpassword \
+  -p 3306:3306 \
+  -e MYSQL_INITDB_SKIP_TZINFO=1 \
+  --lower-case-table-names=1 \
+  mysql:8</p>
+<h1 id="wait-for-mysql-to-initialize">Wait for MySQL to initialize</h1>
+<p>sleep 30</p>
+<h1 id="connect-to-mysql-and-create-user-with-native-password-authentication">Connect to MySQL and create user with native password authentication</h1>
+<p>docker exec -i mysql-container mysql -uroot -prootpassword -e &quot; \
+  create user &apos;admintalu&apos;@&apos;%&apos; identified with mysql_native_password by &apos;123456&apos;; \
+  grant all privileges on <em>.</em> to &apos;admintalu&apos;@&apos;%&apos; with grant option; \
+  flush privileges; \
+&quot;</p>
 <footer class="page-footer"><span class="copyright">&#xA9; snowdreams1006 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2025-10-07 09:35:22
+2025-10-07 09:25:19
 </span></footer>
 <script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
 						
@@ -528,8 +548,12 @@
 
 		
 		
+		<a href="Untitled.html" class="navigation navigation-prev " aria-label="Previous page: Untitled">
+			<i class="fa fa-angle-left"></i>
+		</a>
 		
-		<a href="JDC 微服务项目启动方案.html" class="navigation navigation-next navigation-unique" aria-label="Next page: JDC 微服务项目启动方案">
+		
+		<a href="0002install_redis_local4.0.11.sh.html" class="navigation navigation-next " aria-label="Next page: Redis本地安装">
 			<i class="fa fa-angle-right"></i>
 		</a>
 		
@@ -539,7 +563,7 @@
 	<script>
 		var gitbook = gitbook || [];
 		gitbook.push(function() {
-			gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"JDC 微服务项目启动方案","level":"2.1","depth":1,"path":"JDC 微服务项目启动方案.md","ref":"JDC 微服务项目启动方案.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"^3.2.3","theme":"default","variables":{},"plugins":["tbfed-pagefooter","lunr","search","back-to-top-button","copy-code-button","heading-anchors","highlight","theme-fexa","code","splitter","popup","page-toc-button","accordion","livereload","sharing","fontsettings"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy snowdreams1006","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"livereload":{},"splitter":{},"accordion":{},"search":{},"popup":{},"theme-fexa":{},"lunr":{"ignoreSpecialCharacters":false,"maxIndexSize":1000000},"code":{"copyButtons":true},"fontsettings":{"family":"sans","size":2,"theme":"white"},"heading-anchors":{},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.MD","mtime":"2025-10-07T01:35:22.900Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-10-07T01:52:00.845Z"},"basePath":".","book":{"language":""}});
+			gitbook.page.hasChanged({"page":{"title":"MySQL安装","level":"3.1","depth":1,"next":{"title":"Redis本地安装","level":"3.2","depth":1,"path":"0002install_redis_local4.0.11.sh.md","ref":"0002install_redis_local4.0.11.sh.md","articles":[]},"previous":{"title":"Untitled","level":"2.9","depth":1,"path":"Untitled.md","ref":"Untitled.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"^3.2.3","theme":"default","variables":{},"plugins":["tbfed-pagefooter","lunr","search","back-to-top-button","copy-code-button","heading-anchors","highlight","theme-fexa","code","splitter","popup","page-toc-button","accordion","livereload","sharing","fontsettings"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy snowdreams1006","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"livereload":{},"splitter":{},"accordion":{},"search":{},"popup":{},"theme-fexa":{},"lunr":{"ignoreSpecialCharacters":false,"maxIndexSize":1000000},"code":{"copyButtons":true},"fontsettings":{"family":"sans","size":2,"theme":"white"},"heading-anchors":{},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"0001MySql.sh.md","mtime":"2025-10-07T01:25:19.496Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-10-07T01:52:00.845Z"},"basePath":".","book":{"language":""}});
 		});
 	</script>
 </div>

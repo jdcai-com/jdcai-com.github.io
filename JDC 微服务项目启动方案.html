@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>JDC 微服务项目启动方案 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -85,8 +85,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="JDC 微服务项目启动方案.html" />
+    <link rel="next" href="001rocketmq.html" />
     
+    
+    <link rel="prev" href="./" />
     
 
     </head>
@@ -129,7 +131,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -149,7 +151,7 @@
         
         
     
-        <li class="chapter " data-level="2.1" data-path="JDC 微服务项目启动方案.html">
+        <li class="chapter active" data-level="2.1" data-path="JDC 微服务项目启动方案.html">
             
                 <a href="JDC 微服务项目启动方案.html">
             
@@ -481,7 +483,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >JDC 微服务项目启动方案</a>
     </h1>
 </div>
 
@@ -496,10 +498,92 @@
     
 					<section class="normal markdown-section">
 						
-						<p>git add .  &amp;&amp; git commit -m &quot;update file&quot;  &amp;&amp; git push </p>
-<p>gitbook serve  </p>
+						<p>&#x6839;&#x636E;&#x60A8;&#x63D0;&#x4F9B;&#x7684; history &#x547D;&#x4EE4;&#x8BB0;&#x5F55;&#xFF0C;&#x6211;&#x4E3A;&#x60A8;&#x6574;&#x7406;&#x4E86;&#x4E00;&#x5957; JDC &#x5FAE;&#x670D;&#x52A1;&#x9879;&#x76EE;&#x542F;&#x52A8;&#x65B9;&#x6848;&#xFF0C;&#x5305;&#x62EC;&#x73AF;&#x5883;&#x68C0;&#x67E5;&#x3001;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x987A;&#x5E8F;&#x3001;&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x6392;&#x67E5;&#x7B49;&#xFF0C;&#x5E2E;&#x52A9;&#x60A8;&#x66F4;&#x9AD8;&#x6548;&#x3001;&#x7A33;&#x5B9A;&#x5730;&#x542F;&#x52A8;&#x6574;&#x5957;&#x7CFB;&#x7EDF;&#x3002;
+&#x2705; &#x4E00;&#x3001;&#x73AF;&#x5883;&#x68C0;&#x67E5;
+&#x5728;&#x542F;&#x52A8; JDC &#x670D;&#x52A1;&#x4E4B;&#x524D;&#xFF0C;&#x8BF7;&#x786E;&#x4FDD;&#x4EE5;&#x4E0B;&#x4E2D;&#x95F4;&#x4EF6;&#x670D;&#x52A1;&#x5DF2;&#x6B63;&#x5E38;&#x542F;&#x52A8;&#xFF1A;</p>
+<ol>
+<li>MySQL
+mysql -u root -p<h1 id="&#x82E5;&#x65E0;&#x6CD5;&#x767B;&#x5F55;&#xFF0C;&#x5C1D;&#x8BD5;&#x91CD;&#x542F;">&#x82E5;&#x65E0;&#x6CD5;&#x767B;&#x5F55;&#xFF0C;&#x5C1D;&#x8BD5;&#x91CD;&#x542F;</h1>
+service mysqld restart</li>
+<li>Redis
+cd ~/web/tool/redis-4.0.11/src/
+./redis-server ../redis.conf</li>
+<li>RabbitMQ
+rabbitmq-server -detached
+rabbitmqctl status</li>
+<li>RocketMQ
+cd ~/web/tool/rocketmq-all-4.3.0-bin-release/
+nohup sh bin/mqnamesrv &amp;
+nohup sh bin/mqbroker -n localhost:9876 -c broker.properties &amp;</li>
+<li>Zookeeper
+cd ~/web/tool/zookeeper-3.4.12/bin/
+./zkServer.sh start</li>
+<li>Nginx&#xFF08;&#x524D;&#x7AEF;&#x4EE3;&#x7406;&#xFF09;
+nginx
+nginx -s reload
+&#x1F680; &#x4E8C;&#x3001;JDC &#x5FAE;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x987A;&#x5E8F;
+&#x5EFA;&#x8BAE;&#x6309;&#x4EE5;&#x4E0B;&#x987A;&#x5E8F;&#x542F;&#x52A8;&#xFF0C;&#x4EE5;&#x907F;&#x514D;&#x670D;&#x52A1;&#x95F4;&#x4F9D;&#x8D56;&#x95EE;&#x9898;&#xFF1A;</li>
+<li>Eureka&#xFF08;&#x6CE8;&#x518C;&#x4E2D;&#x5FC3;&#xFF09;
+cd ~/web/jdc/
+nohup java -jar jdc-eureka.jar &gt;/dev/null 2&gt;&amp;1 &amp;</li>
+<li>Discovery&#xFF08;&#x670D;&#x52A1;&#x53D1;&#x73B0;&#xFF09;
+nohup java -jar jdc-discovery.jar &gt;/dev/null 2&gt;&amp;1 &amp;</li>
+<li>&#x5404;&#x4E2A;&#x5FAE;&#x670D;&#x52A1;&#x6A21;&#x5757;&#xFF08;&#x6309;&#x9700;&#xFF09;
+nohup java -jar jdc-provider-uac.jar &gt;/dev/null 2&gt;&amp;1 &amp;
+nohup java -jar jdc-provider-mdc.jar &gt;/dev/null 2&gt;&amp;1 &amp;
+nohup java -jar jdc-provider-omc.jar &gt;/dev/null 2&gt;&amp;1 &amp;
+nohup java -jar jdc-provider-opc.jar &gt;/dev/null 2&gt;&amp;1 &amp;
+nohup java -jar jdc-provider-tpc.jar &gt;/dev/null 2&gt;&amp;1 &amp;</li>
+<li>Gateway&#xFF08;&#x7F51;&#x5173;&#xFF09;
+nohup java -jar jdc-gateway.jar &gt;/dev/null 2&gt;&amp;1 &amp;
+&#x1F50D; &#x4E09;&#x3001;&#x68C0;&#x67E5;&#x670D;&#x52A1;&#x72B6;&#x6001;
+ps -ef | grep jdc
+&#x786E;&#x8BA4;&#x5404;&#x670D;&#x52A1;&#x662F;&#x5426;&#x542F;&#x52A8;&#x6210;&#x529F;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;
+root     12345  1  0 10:00 pts/0    00:00:30 java -jar jdc-eureka.jar
+root     12346  1  0 10:01 pts/0    00:00:29 java -jar jdc-gateway.jar
+...
+&#x1F9E9; &#x56DB;&#x3001;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#xFF08;Node.js&#xFF09;
+cd ~/web/node-server/
+npm run prd
+&#x26A0;&#xFE0F; &#x4E94;&#x3001;&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x4E0E;&#x6392;&#x67E5;</li>
+<li>&#x670D;&#x52A1;&#x542F;&#x52A8;&#x5931;&#x8D25;&#x6216;&#x95EA;&#x9000;
+&#x67E5;&#x770B;&#x65E5;&#x5FD7;&#xFF1A;cd ~/logs/
+ll
+tail -f jdc-provider-uac.log
+&#x68C0;&#x67E5;&#x7AEF;&#x53E3;&#x5360;&#x7528;&#xFF1A;netstat -tunlp | grep 8080</li>
+<li>&#x670D;&#x52A1;&#x6CE8;&#x518C;&#x4E0D;&#x4E0A; Eureka
+&#x68C0;&#x67E5; application.yml &#x4E2D; eureka.client.service-url.defaultZone &#x914D;&#x7F6E;&#x662F;&#x5426;&#x6B63;&#x786E;&#x3002;</li>
+<li>&#x4E2D;&#x6587;&#x4E71;&#x7801;&#xFF08;&#x5982;&#x60A8;&#x4E4B;&#x524D;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#xFF09;
+&#x786E;&#x4FDD;&#x542F;&#x52A8;&#x811A;&#x672C;&#x6216; JVM &#x53C2;&#x6570;&#x4E2D;&#x5305;&#x542B;&#xFF1A;java -Dfile.encoding=UTF-8 -jar jdc-provider-uac.jar
+&#x1F4CC; &#x516D;&#x3001;&#x63A8;&#x8350;&#x811A;&#x672C;&#xFF08;&#x4E00;&#x952E;&#x542F;&#x52A8;&#xFF09;
+&#x60A8;&#x53EF;&#x4EE5;&#x5C06;&#x4E0A;&#x8FF0;&#x547D;&#x4EE4;&#x6574;&#x5408;&#x4E3A;&#x4E00;&#x4E2A; start-jdc.sh &#x811A;&#x672C;&#xFF1A;<h1 id="binbash">!/bin/bash</h1>
+<h1 id="&#x542F;&#x52A8;&#x57FA;&#x7840;&#x670D;&#x52A1;">&#x542F;&#x52A8;&#x57FA;&#x7840;&#x670D;&#x52A1;</h1>
+echo &quot;Starting MySQL...&quot;
+service mysqld restart
+echo &quot;Starting Redis...&quot;
+cd ~/web/tool/redis-4.0.11/src/
+./redis-server ../redis.conf &amp;
+echo &quot;Starting RabbitMQ...&quot;
+rabbitmq-server -detached
+echo &quot;Starting Zookeeper...&quot;
+cd ~/web/tool/zookeeper-3.4.12/bin/
+./zkServer.sh start<h1 id="&#x542F;&#x52A8;-jdc-&#x5FAE;&#x670D;&#x52A1;">&#x542F;&#x52A8; JDC &#x5FAE;&#x670D;&#x52A1;</h1>
+cd ~/web/jdc/
+nohup java -jar jdc-eureka.jar &gt;/dev/null 2&gt;&amp;1 &amp;
+nohup java -jar jdc-discovery.jar &gt;/dev/null 2&gt;&amp;1 &amp;
+nohup java -jar jdc-provider-uac.jar &gt;/dev/null 2&gt;&amp;1 &amp;
+nohup java -jar jdc-provider-mdc.jar &gt;/dev/null 2&gt;&amp;1 &amp;
+nohup java -jar jdc-gateway.jar &gt;/dev/null 2&gt;&amp;1 &amp;
+echo &quot;All services started.&quot;
+&#x7136;&#x540E;&#x6267;&#x884C;&#xFF1A;
+chmod +x start-jdc.sh
+./start-jdc.sh
+&#x5982;&#x9700;&#x6211;&#x5E2E;&#x60A8;&#x751F;&#x6210;&#x66F4;&#x7CBE;&#x7EC6;&#x7684;&#x542F;&#x52A8;&#x811A;&#x672C;&#xFF08;&#x5982;&#x5E26;&#x65E5;&#x5FD7;&#x8F6E;&#x8F6C;&#x3001;&#x81EA;&#x52A8;&#x91CD;&#x8BD5;&#x673A;&#x5236;&#x7B49;&#xFF09;&#xFF0C;&#x6216;&#x8005;&#x534F;&#x52A9;&#x6392;&#x67E5;&#x67D0;&#x4E2A;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x95EE;&#x9898;&#xFF0C;&#x8BF7;&#x544A;&#x8BC9;&#x6211;&#x5177;&#x4F53;&#x62A5;&#x9519;&#x6216;&#x65E5;&#x5FD7;&#x5185;&#x5BB9;&#x3002;</li>
+</ol>
+<hr>
+<p>&#x4EE5;&#x4E0A;&#x5185;&#x5BB9;&#x7531;AI&#x751F;&#x6210;&#xFF0C;&#x4EC5;&#x4F9B;&#x53C2;&#x8003;&#x548C;&#x501F;&#x9274; </p>
 <footer class="page-footer"><span class="copyright">&#xA9; snowdreams1006 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2025-10-07 09:35:22
+2025-09-26 18:42:04
 </span></footer>
 <script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
 						
@@ -528,8 +612,12 @@
 
 		
 		
+		<a href="./" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+			<i class="fa fa-angle-left"></i>
+		</a>
 		
-		<a href="JDC 微服务项目启动方案.html" class="navigation navigation-next navigation-unique" aria-label="Next page: JDC 微服务项目启动方案">
+		
+		<a href="001rocketmq.html" class="navigation navigation-next " aria-label="Next page: RocketMQ">
 			<i class="fa fa-angle-right"></i>
 		</a>
 		
@@ -539,7 +627,7 @@
 	<script>
 		var gitbook = gitbook || [];
 		gitbook.push(function() {
-			gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"JDC 微服务项目启动方案","level":"2.1","depth":1,"path":"JDC 微服务项目启动方案.md","ref":"JDC 微服务项目启动方案.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"^3.2.3","theme":"default","variables":{},"plugins":["tbfed-pagefooter","lunr","search","back-to-top-button","copy-code-button","heading-anchors","highlight","theme-fexa","code","splitter","popup","page-toc-button","accordion","livereload","sharing","fontsettings"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy snowdreams1006","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"livereload":{},"splitter":{},"accordion":{},"search":{},"popup":{},"theme-fexa":{},"lunr":{"ignoreSpecialCharacters":false,"maxIndexSize":1000000},"code":{"copyButtons":true},"fontsettings":{"family":"sans","size":2,"theme":"white"},"heading-anchors":{},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.MD","mtime":"2025-10-07T01:35:22.900Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-10-07T01:52:00.845Z"},"basePath":".","book":{"language":""}});
+			gitbook.page.hasChanged({"page":{"title":"JDC 微服务项目启动方案","level":"2.1","depth":1,"next":{"title":"RocketMQ","level":"2.2","depth":1,"path":"001rocketmq.md","ref":"001rocketmq.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.MD","ref":"README.MD","articles":[]},"dir":"ltr"},"config":{"gitbook":"^3.2.3","theme":"default","variables":{},"plugins":["tbfed-pagefooter","lunr","search","back-to-top-button","copy-code-button","heading-anchors","highlight","theme-fexa","code","splitter","popup","page-toc-button","accordion","livereload","sharing","fontsettings"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy snowdreams1006","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"livereload":{},"splitter":{},"accordion":{},"search":{},"popup":{},"theme-fexa":{},"lunr":{"ignoreSpecialCharacters":false,"maxIndexSize":1000000},"code":{"copyButtons":true},"fontsettings":{"family":"sans","size":2,"theme":"white"},"heading-anchors":{},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"JDC 微服务项目启动方案.md","mtime":"2025-09-26T10:42:04.986Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-10-07T01:52:00.845Z"},"basePath":".","book":{"language":""}});
 		});
 	</script>
 </div>

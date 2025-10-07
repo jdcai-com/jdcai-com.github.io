@@ -1,0 +1,42 @@
+# GitBook ignore file
+# Exclude shell scripts
+*.sh
+
+# Exclude binary files
+*.tar.gz
+*.tar.xz
+*.zip
+
+# Exclude configuration files
+*.conf
+*.properties
+*.server
+*.local
+*.json
+
+# Exclude log files
+*.log
+
+# Exclude temporary files
+*.tmp
+*.temp
+.cache
+
+# Exclude node modules
+node_modules/
+
+# Exclude build output
+_book/
+*.epub
+*.mobi
+*.pdf
+
+# Exclude editor directories and files
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

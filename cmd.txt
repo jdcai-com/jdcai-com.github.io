@@ -1,0 +1,37 @@
+  tail -f *uac.out
+  
+ nohup java -jar -Xmx256m -Xms256m  jdc-eureka.jar 1>./log/jdc-eureka.out 2>&1 &
+ tail -f  /log/jdc-eureka.out
+
+
+nohup java -jar -Xmx256m -Xms256m  jdc-discovery.jar 1>./log/jdc-discovery.out 2>&1 &
+tail -f log/jdc-discovery.out
+
+
+	 
+nohup java -jar -Xmx256m -Xms256m  jdc-provider-uac.jar 1>./log/jdc-provider-uac.out 2>&1 &
+tail -f log/jdc-provider-uac.out
+   
+nohup java -jar -Xmx256m -Xms256m  jdc-gateway.jar 1>./log/jdc-gateway.out  2>&1 &
+tail -f log/jdc-gateway.out
+
+nohup java -jar  -Xmx256m -Xms256m  jdc-provider-tpc.jar 1> ./log/jdc-provider-tpc.out 2>&1 &
+tail -f log/jdc-provider-tpc.out
+
+
+nohup java -jar  -Xmx256m -Xms256m  jdc-provider-mdc.jar 1> ./log/jdc-provider-mdc.out 2>&1 &
+tail -f log/jdc-provider-mdc.out
+
+
+
+
+  nohup java -jar jdc-provider-mdc.jar 1> ./log/provider-mdc.out 2>&1 &
+  nohup java -jar jdc-provider-omc.jar 1> ./log/provider-omc.out 2>&1 &
+  nohup java -jar jdc-provider-opc.jar 1> ./log/provider-opc.out 2>&1 &
+
+
+
+springfox-spring-web webMvcRequestHandlerProvider
+
+
+eTI5dGJ3diYkMTAweTI5dGJ3diYkMTAw

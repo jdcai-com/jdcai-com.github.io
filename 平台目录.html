@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>平台目录 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -85,8 +85,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="JDC 微服务项目启动方案.html" />
+    <link rel="next" href="usershell.html" />
     
+    
+    <link rel="prev" href="后端部署.html" />
     
 
     </head>
@@ -129,7 +131,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -214,7 +216,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6" data-path="平台目录.html">
+        <li class="chapter active" data-level="2.6" data-path="平台目录.html">
             
                 <a href="平台目录.html">
             
@@ -481,7 +483,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >平台目录</a>
     </h1>
 </div>
 
@@ -496,10 +498,75 @@
     
 					<section class="normal markdown-section">
 						
-						<p>git add .  &amp;&amp; git commit -m &quot;update file&quot;  &amp;&amp; git push </p>
-<p>gitbook serve  </p>
-<footer class="page-footer"><span class="copyright">&#xA9; snowdreams1006 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2025-10-07 09:35:22
+						<pre><code>&#x251C;&#x2500;paascloud-master----------------------------&#x7236;&#x9879;&#x76EE;&#xFF0C;&#x516C;&#x5171;&#x4F9D;&#x8D56;
+&#x2502;  &#x2502;
+&#x2502;  &#x251C;&#x2500;paascloud-eureka--------------------------&#x5FAE;&#x670D;&#x52A1;&#x6CE8;&#x518C;&#x4E2D;&#x5FC3;
+&#x2502;  &#x2502;
+&#x2502;  &#x251C;&#x2500;paascloud-discovery-----------------------&#x5FAE;&#x670D;&#x52A1;&#x914D;&#x7F6E;&#x4E2D;&#x5FC3;
+&#x2502;  &#x2502;
+&#x2502;  &#x251C;&#x2500;paascloud-monitor-------------------------&#x5FAE;&#x670D;&#x52A1;&#x76D1;&#x63A7;&#x4E2D;&#x5FC3;
+&#x2502;  &#x2502;
+&#x2502;  &#x251C;&#x2500;paascloud-zipkin--------------------------&#x5FAE;&#x670D;&#x52A1;&#x65E5;&#x5FD7;&#x91C7;&#x96C6;&#x4E2D;&#x5FC3;
+&#x2502;  &#x2502;
+&#x2502;  &#x251C;&#x2500;paascloud-gateway--------------------------&#x5FAE;&#x670D;&#x52A1;&#x7F51;&#x5173;&#x4E2D;&#x5FC3;
+&#x2502;  &#x2502;
+&#x2502;  &#x251C;&#x2500;paascloud-provider
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-provider-mdc------------------&#x6570;&#x636E;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-provider-omc------------------&#x8BA2;&#x5355;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-provider-opc------------------&#x5BF9;&#x63A5;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-provider-tpc------------------&#x4EFB;&#x52A1;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x2514;&#x2500;paascloud-provider-uac------------------&#x7528;&#x6237;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;
+&#x2502;  &#x2502;
+&#x2502;  &#x251C;&#x2500;paascloud-provider-api
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-provider-mdc-api------------------&#x6570;&#x636E;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;API
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-provider-omc-api------------------&#x8BA2;&#x5355;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;API
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-provider-opc-api------------------&#x5BF9;&#x63A5;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;API
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-provider-tpc-api------------------&#x4EFB;&#x52A1;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;API
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-provider-sdk-api------------------&#x53EF;&#x9760;&#x6D88;&#x606F;&#x670D;&#x52A1;API
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x2514;&#x2500;paascloud-provider-uac-api------------------&#x7528;&#x6237;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;API
+&#x2502;  &#x2502;
+&#x2502;  &#x251C;&#x2500;paascloud-common
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-common-base------------------&#x516C;&#x5171;POJO&#x57FA;&#x7840;&#x5305;
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-common-config------------------&#x516C;&#x5171;&#x914D;&#x7F6E;&#x5305;
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-common-core------------------&#x5FAE;&#x670D;&#x52A1;&#x6838;&#x5FC3;&#x4F9D;&#x8D56;&#x5305;
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-common-util------------------&#x516C;&#x5171;&#x5DE5;&#x5177;&#x5305;
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-common-zk------------------zookeeper&#x914D;&#x7F6E;
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-security-app------------------&#x516C;&#x5171;&#x65E0;&#x72B6;&#x6001;&#x5B89;&#x5168;&#x8BA4;&#x8BC1;
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-security-core------------------&#x5B89;&#x5168;&#x670D;&#x52A1;&#x6838;&#x5FC3;&#x5305;
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x2514;&#x2500;paascloud-security-feign------------------&#x57FA;&#x4E8E;auth2&#x7684;feign&#x914D;&#x7F6E;
+&#x2502;  &#x2502;
+&#x2502;  &#x251C;&#x2500;paascloud-generator
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-generator-mdc------------------&#x6570;&#x636E;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;Mybatis Generator
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-generator-omc------------------&#x6570;&#x636E;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;Mybatis Generator
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-generator-opc------------------&#x6570;&#x636E;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;Mybatis Generator
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x251C;&#x2500;paascloud-generator-tpc------------------&#x6570;&#x636E;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;Mybatis Generator
+&#x2502;  &#x2502;  &#x2502;
+&#x2502;  &#x2502;  &#x2514;&#x2500;paascloud-generator-uac------------------&#x6570;&#x636E;&#x670D;&#x52A1;&#x4E2D;&#x5FC3;Mybatis Generator
+</code></pre><footer class="page-footer"><span class="copyright">&#xA9; snowdreams1006 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2023-02-09 21:36:30
 </span></footer>
 <script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
 						
@@ -528,8 +595,12 @@
 
 		
 		
+		<a href="后端部署.html" class="navigation navigation-prev " aria-label="Previous page: 后端部署">
+			<i class="fa fa-angle-left"></i>
+		</a>
 		
-		<a href="JDC 微服务项目启动方案.html" class="navigation navigation-next navigation-unique" aria-label="Next page: JDC 微服务项目启动方案">
+		
+		<a href="usershell.html" class="navigation navigation-next " aria-label="Next page: 用户Shell">
 			<i class="fa fa-angle-right"></i>
 		</a>
 		
@@ -539,7 +610,7 @@
 	<script>
 		var gitbook = gitbook || [];
 		gitbook.push(function() {
-			gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"JDC 微服务项目启动方案","level":"2.1","depth":1,"path":"JDC 微服务项目启动方案.md","ref":"JDC 微服务项目启动方案.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"^3.2.3","theme":"default","variables":{},"plugins":["tbfed-pagefooter","lunr","search","back-to-top-button","copy-code-button","heading-anchors","highlight","theme-fexa","code","splitter","popup","page-toc-button","accordion","livereload","sharing","fontsettings"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy snowdreams1006","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"livereload":{},"splitter":{},"accordion":{},"search":{},"popup":{},"theme-fexa":{},"lunr":{"ignoreSpecialCharacters":false,"maxIndexSize":1000000},"code":{"copyButtons":true},"fontsettings":{"family":"sans","size":2,"theme":"white"},"heading-anchors":{},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.MD","mtime":"2025-10-07T01:35:22.900Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-10-07T01:52:00.845Z"},"basePath":".","book":{"language":""}});
+			gitbook.page.hasChanged({"page":{"title":"平台目录","level":"2.6","depth":1,"next":{"title":"用户Shell","level":"2.7","depth":1,"path":"usershell.md","ref":"usershell.md","articles":[]},"previous":{"title":"后端部署","level":"2.5","depth":1,"path":"后端部署.md","ref":"后端部署.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"^3.2.3","theme":"default","variables":{},"plugins":["tbfed-pagefooter","lunr","search","back-to-top-button","copy-code-button","heading-anchors","highlight","theme-fexa","code","splitter","popup","page-toc-button","accordion","livereload","sharing","fontsettings"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"&copy snowdreams1006","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"livereload":{},"splitter":{},"accordion":{},"search":{},"popup":{},"theme-fexa":{},"lunr":{"ignoreSpecialCharacters":false,"maxIndexSize":1000000},"code":{"copyButtons":true},"fontsettings":{"family":"sans","size":2,"theme":"white"},"heading-anchors":{},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"all":["facebook","google","twitter","weibo","instapaper"],"facebook":true,"google":false,"instapaper":false,"twitter":true,"vk":false,"weibo":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"平台目录.md","mtime":"2023-02-09T13:36:30.124Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-10-07T01:52:00.845Z"},"basePath":".","book":{"language":""}});
 		});
 	</script>
 </div>
